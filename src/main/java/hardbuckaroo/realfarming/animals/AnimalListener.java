@@ -33,7 +33,7 @@ public class AnimalListener implements Listener {
             if(event.getEntity() instanceof Animals) {
                 Animals animal = (Animals) event.getEntity();
                 String animalString = animal.getType().toString().toLowerCase();
-                if (plugin.getConfig().contains("animals."+animalString+".daysToAdult") && plugin.getConfig().getDouble("animals."+animalString+".daysToAdult") != 999) {
+                if (plugin.getConfig().contains("animals."+animalString+".daysToAdult")) {
                     double age = -(plugin.getConfig().getDouble("animals."+animalString+".daysToAdult") * 1728000);
                     animal.setAge((int) Math.round(age));
                 }

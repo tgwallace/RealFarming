@@ -39,7 +39,7 @@ public class AnimalBreedLoop implements Listener {
                             Bukkit.getScheduler().runTaskLater(Bukkit.getServer().getPluginManager().getPlugin("RealFarming"), () -> animal.damage(animal.getHealth()), rand.nextInt(1200));
                         }
                     }
-                    if (plugin.getConfig().contains("animals."+animalString+".lifespan") && plugin.getConfig().getDouble("animals."+animalString+".lifespan") != 999) {
+                    if (plugin.getConfig().contains("animals."+animalString+".lifespan")) {
                         double maxAge = plugin.getConfig().getDouble("animals."+animalString+".lifespan") * 1728000;
 
                         if(animal.getAge() > maxAge) {
@@ -48,8 +48,11 @@ public class AnimalBreedLoop implements Listener {
                             }
                         }
                         else if(animal.getAge() > maxAge * 0.80) {
-                            PotionEffect potion = new PotionEffect(PotionEffectType.POISON,PotionEffect.INFINITE_DURATION,1);
-                            Bukkit.getScheduler().runTaskLater(Bukkit.getServer().getPluginManager().getPlugin("RealFarming"), () -> animal.addPotionEffect(potion), rand.nextInt(1200));
+                            PotionEffect potionPoison = new PotionEffect(PotionEffectType.POISON,PotionEffect.INFINITE_DURATION,1);
+                            PotionEffect potionSlow = new PotionEffect(PotionEffectType.SLOW,PotionEffect.INFINITE_DURATION,1);
+                            int random = rand.nextInt(1200);
+                            Bukkit.getScheduler().runTaskLater(Bukkit.getServer().getPluginManager().getPlugin("RealFarming"), () -> animal.addPotionEffect(potionPoison), random);
+                            Bukkit.getScheduler().runTaskLater(Bukkit.getServer().getPluginManager().getPlugin("RealFarming"), () -> animal.addPotionEffect(potionSlow), random);
                         }
                     }
                 }
