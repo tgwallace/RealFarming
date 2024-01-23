@@ -6,7 +6,7 @@
 
     <groupId>HardBuckaroo</groupId>
     <artifactId>RealFarming</artifactId>
-    <version>MC1.20.1-RC1.0</version>
+    <version>MC1.20.1-RF1.0</version>
     <packaging>jar</packaging>
 
     <name>RealFarming</name>
