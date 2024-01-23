@@ -1,0 +1,5 @@
+name: RealFarming
+version: 1.0
+main: hardbuckaroo.realfarming.RealFarming
+api-version: 1.20
+description: Makes crop and animal growth tied to the location's surroundings.

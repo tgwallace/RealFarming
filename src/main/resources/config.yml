@@ -1,0 +1,383 @@
+# Turns on or off all features for plants.
+plantModule: true
+# Turns on or off all features for animals.
+animalModule: true
+
+# Turns on or off auto-breeding for animals.
+autoBreed: true
+# Sets frequency of auto-breeding in real life minutes (if enabled).
+autoBreedTimer: 30
+# Determines whether player-led breeding is allowed.
+allowPlayerBreeding: false
+
+# Determines whether seed drops from breaking grass will be modified to drop biome-appropriate seeds and saplings.
+seedSwitch: true
+
+# The factors listed below determine the growth speed of a given plant. The further a plant is from its ideal conditions, the slower it will grow. A plant in its ideal conditions will grow at full speed, while a plant far from its ideal conditions may not grow at all.
+# Growth speed is calculated using this formula for most plants:
+#  (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+Math.abs(1-(block.getRelative(0,1,0).getLightFromSky()/15))+altitudeModifier)*sensitivity))*100
+# And this formula is used for mushrooms, netherwart, sea pickles, kelp, and cave vines:
+#  (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+altitudeModifier)*sensitivity))*100
+# idealRain: Ideal humidity (https://minecraft.fandom.com/wiki/Biome#Humidity).
+# idealTemp: Ideal temperature (https://minecraft.fandom.com/wiki/Biome#Temperature).
+# idealAltitude: Ideal Y-level. Plants have a 32-block tolerance in each direction before growth penalties begin to accrue at a rate of 1% per Y level.
+# sensitivity: Multiplier for growth penalties. A low sensitivity means a hardier plant (lower penalties), while a high sensitivity means a more fickle plant (higher penalties).
+# To remove a criteria from consideration, simply delete it. If a plant is not listed here at all, its growth rate will always be 100%.
+plants:
+  spruce_sapling:
+    idealRain: 0.8
+    idealTemp: 0.25
+    idealAltitude: 64
+    sensitivity: 1.00
+  sweet_berry_bush:
+    idealRain: 0.8
+    idealTemp: 0.25
+    idealAltitude: 90
+    sensitivity: 1.25
+  potatoes:
+    idealRain: 0.3
+    idealTemp: 0.2
+    idealAltitude: 64
+    sensitivity: 0.85
+  oak_sapling:
+    idealRain: 0.8
+    idealTemp: 0.7
+    idealAltitude: 64
+    sensitivity: 1.00
+  brown_mushroom:
+    idealRain: 0.5
+    idealTemp: 0.5
+    idealAltitude: -32
+    sensitivity: 1.25
+  cave_vines_plant:
+    idealRain: 0.5
+    idealTemp: 0.5
+    idealAltitude: -32
+    sensitivity: 1.5
+  bamboo_sapling:
+    idealRain: 0.9
+    idealTemp: 0.95
+    idealAltitude: 128
+    sensitivity: 0.75
+  beetroots:
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 90
+    sensitivity: 0.90
+  azalea:
+    idealRain: 0.5
+    idealTemp: 0.5
+    idealAltitude: 64
+    sensitivity: 1.5
+  flowering_azalea:
+    idealRain: 0.5
+    idealTemp: 0.5
+    idealAltitude: 64
+    sensitivity: 1.5
+  acacia_sapling:
+    idealRain: 0.0
+    idealTemp: 1.2
+    idealAltitude: 64
+    sensitivity: 1.5
+  cactus:
+    idealRain: 0.0
+    idealTemp: 2.00
+    idealAltitude: 64
+    sensitivity: 1.25
+  wheat:
+    idealRain: 0.8
+    idealTemp: 0.6
+    idealAltitude: 64
+    sensitivity: 1.0
+  carrots:
+    idealRain: 0.8
+    idealTemp: 0.3
+    idealAltitude: 90
+    sensitivity: 1.0
+  sea_pickle:
+    idealRain: 0.5
+    idealTemp: 0.5
+    idealAltitude: 45
+    sensitivity: 2.0
+  dark_oak_sapling:
+    idealRain: 0.8
+    idealTemp: 0.7
+    idealAltitude: 64
+    sensitivity: 1.0
+  pumpkin_stem: # Stem is for the stem to advance growth stages, Pumpkin is for a fully grown stem to spawn a pumpkin. Both must have a value.
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 64
+    sensitivity: 1.0
+  pumpkin:
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 64
+    sensitivity: 1.0
+  melon_stem: # Stem is for the stem to advance growth stages, Melon is for a fully grown stem to spawn a pumpkin. Both must have a value.
+    idealRain: 0.3
+    idealTemp: 1.0
+    idealAltitude: 64
+    sensitivity: 1.O
+  melon:
+    idealRain: 0.3
+    idealTemp: 1.0
+    idealAltitude: 64
+    sensitivity: 1.0
+  cocoa:
+    idealRain: 0.9
+    idealTemp: 0.95
+    idealAltitude: 64
+    sensitivity: 1.25
+  kelp_plant:
+    idealRain: 0.5
+    idealTemp: 0.5
+    idealAltitude: 45
+    sensitivity: 1.5
+  mangrove_propagule:
+    idealRain: 0.9
+    idealTemp: 0.8
+    idealAltitude: 64
+    sensitivity: 1.5
+  sugar_cane:
+    idealRain: 0.9
+    idealTemp: 0.95
+    idealAltitude: 64
+    sensitivity: 1.0
+  red_mushroom:
+    idealRain: 0.5
+    idealTemp: 0.5
+    idealAltitude: -32
+    sensitivity: 1.25
+  birch_sapling:
+    idealRain: 0.6
+    idealTemp: 0.6
+    idealAltitude: 64
+    sensitivity: 1.0
+  jungle_sapling:
+    idealRain: 0.9
+    idealTemp: 0.95
+    idealAltitude: 64
+    sensitivity: 1.5
+  torchflower_crop:
+    idealRain: 0.5
+    idealTemp: 0.5
+    idealAltitude: 64
+    sensitivity: 1.5
+  pitcher_crop:
+    idealRain: 0.9
+    idealTemp: 0.8
+    idealAltitude: 64
+    sensitivity: 1.5
+  cherry_sapling:
+    idealRain: 0.8
+    idealTemp: 0.5
+    idealAltitude: 128
+    sensitivity: 1.5
+  nether_wart:
+    idealRain: 0.0
+    idealTemp: 2.0
+    idealAltitude: 64
+    sensitivity: 1.5
+# The factors listed below determine the breeding rate of a given type of animal. The further an animal is from its ideal conditions, the less often it will breed. An animal in its ideal conditions will breed at full frequency, while an animal far from its ideal conditions may not breed at all.
+# Breed rate is calculated using this formula for all animals:
+#  (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+altitudeModifier+densityModifier)*sensitivity))*100
+# idealRain: Ideal humidity (https://minecraft.fandom.com/wiki/Biome#Humidity).
+# idealTemp: Ideal temperature (https://minecraft.fandom.com/wiki/Biome#Temperature).
+# idealAltitude: Ideal Y-level. Animals have a 32-block tolerance in each direction before growth penalties begin to accrue at a rate of 1% per Y level.
+# maxDensity: Maximum number of other entities in a 10-block radius before penalties begin to accrue at a rate of 5% per additional entity.
+# sensitivity: Multiplier for breeding penalties. A low sensitivity means a hardier animal (lower penalties), while a high sensitivity means a more fickle animal (higher penalties).
+# To remove a criteria from consideration, simply delete it. If an animal is not listed here at all, its growth rate will always be 100%.
+animals:
+  axolotl:
+    idealRain: 0.5
+    idealTemp: 0.5
+    idealAltitude: -32
+    maxDensity: 5
+    sensitivity: 2.0
+    daysToAdult: 0.5
+    lifespan: 10
+  bee:
+    idealRain: 0.8
+    idealTemp: 0.5
+    idealAltitude: 64
+    maxDensity: 20
+    sensitivity: 1.25
+    daysToAdult: 0.5
+    lifespan: 10
+  camel:
+    idealRain: 0.0
+    idealTemp: 2.0
+    idealAltitude: 64
+    maxDensity: 20
+    sensitivity: 1.0
+    daysToAdult: 6
+    lifespan: 50
+  cat:
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 64
+    maxDensity: 10
+    sensitivity: 0.75
+    daysToAdult: 1
+    lifespan: 10
+  chicken:
+    idealRain: 0.8
+    idealTemp: 0.95
+    idealAltitude: 64
+    maxDensity: 35
+    sensitivity: 1.0
+    daysToAdult: 0.5
+    lifespan: 10
+  cow:
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 64
+    maxDensity: 10
+    sensitivity: 1.0
+    daysToAdult: 2
+    lifespan: 20
+  donkey:
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 64
+    maxDensity: 20
+    sensitivity: 1.0
+    daysToAdult: 5
+    lifespan: 40
+  fox:
+    idealRain: 0.8
+    idealTemp: 0.25
+    idealAltitude: 64
+    maxDensity: 5
+    sensitivity: 1.00
+    daysToAdult: 1
+    lifespan: 4
+  frog:
+    idealRain: 0.9
+    idealTemp: 0.8
+    idealAltitude: 64
+    maxDensity: 30
+    sensitivity: 0.65
+    daysToAdult: 2
+    lifespan: 12
+  goat:
+    idealRain: 0.9
+    idealTemp: -0.5
+    idealAltitude: 120
+    maxDensity: 20
+    sensitivity: 1.0
+    daysToAdult: 0.75
+    lifespan: 18
+  hoglin:
+    idealRain: 0.0
+    idealTemp: 2.00
+    idealAltitude: 64
+    maxDensity: 20
+    sensitivity: 1.50
+    daysToAdult: 0.5
+    lifespan: 20
+  horse:
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 64
+    maxDensity: 20
+    sensitivity: 1.0
+    daysToAdult: 2
+    lifespan: 30
+  llama:
+    idealRain: 0.3
+    idealTemp: 0.2
+    idealAltitude: 94
+    maxDensity: 15
+    sensitivity: 1.0
+    daysToAdult: 1
+    lifespan: 20
+  mooshroom:
+    idealRain: 1.0
+    idealTemp: 0.9
+    idealAltitude: 64
+    maxDensity: 10
+    sensitivity: 1.5
+    daysToAdult: 2
+    lifespan: 20
+  mule:
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 64
+    maxDensity: 15
+    sensitivity: 1.0
+    daysToAdult: 3
+    lifespan: 40
+  ocelot:
+    idealRain: 0.9
+    idealTemp: 0.95
+    idealAltitude: 64
+    maxDensity: 10
+    sensitivity: 1.50
+    daysToAdult: 2
+    lifespan: 20
+  panda:
+    idealRain: 0.9
+    idealTemp: 0.95
+    idealAltitude: 64
+    maxDensity: 5
+    sensitivity: 2.0
+    daysToAdult: 6
+    lifespan: 20
+  pig:
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 64
+    maxDensity: 20
+    sensitivity: 1.0
+    daysToAdult: 0.5
+    lifespan: 20
+  rabbit:
+    idealRain: 0.8
+    idealTemp: 0.25
+    idealAltitude: 64
+    maxDensity: 40
+    sensitivity: 0.75
+    daysToAdult: 1
+    lifespan: 9
+  sheep:
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 64
+    maxDensity: 15
+    sensitivity: 1.0
+    daysToAdult: 0.5
+    lifespan: 12
+  sniffer:
+    idealRain: 0.5
+    idealTemp: 0.5
+    idealAltitude: 64
+    maxDensity: 5
+    sensitivity: 1.5
+    daysToAdult: 15
+    lifespan: 50
+  strider:
+    idealRain: 0.0
+    idealTemp: 2.00
+    idealAltitude: 64
+    maxDensity: 5
+    sensitivity: 1.50
+    daysToAdult: 15
+    lifespan: 50
+  turtle:
+    idealRain: 0.4
+    idealTemp: 0.8
+    idealAltitude: 64
+    maxDensity: 5
+    sensitivity: 1.50
+    daysToAdult: 5
+    lifespan: 50
+  wolf:
+    idealRain: 0.8
+    idealTemp: 0.25
+    idealAltitude: 64
+    maxDensity: 10
+    sensitivity: 1.0
+    daysToAdult: 2
+    lifespan: 16
