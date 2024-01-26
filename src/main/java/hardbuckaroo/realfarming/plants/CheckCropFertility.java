@@ -2,6 +2,7 @@ package hardbuckaroo.realfarming.plants;
 
 import hardbuckaroo.realfarming.RealFarming;
 import org.bukkit.Material;
+import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class CheckCropFertility {
         if(Math.abs(altitude-idealAltitude) > 32)
             altitudeModifier = (Math.abs(altitude-idealAltitude) - 32)/100;
 
-        if(Arrays.asList(Material.RED_MUSHROOM, Material.BROWN_MUSHROOM, Material.NETHER_WART, Material.CAVE_VINES_PLANT, Material.SEA_PICKLE, Material.KELP_PLANT).contains(material))
+        if(Arrays.asList(Material.RED_MUSHROOM, Material.BROWN_MUSHROOM, Material.NETHER_WART, Material.CAVE_VINES_PLANT, Material.SEA_PICKLE, Material.KELP_PLANT).contains(material) || block.getBiome().equals(Biome.LUSH_CAVES))
             growChance = (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+altitudeModifier)*sensitivity))*100;
         else
             growChance = (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+Math.abs(1-(block.getRelative(0,1,0).getLightFromSky()/15))+altitudeModifier)*sensitivity))*100;
