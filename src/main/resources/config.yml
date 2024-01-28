@@ -350,7 +350,7 @@ animals:
     idealTemp: 0.25
     idealAltitude: 64
     maxDensity: 30
-    sensitivity: 1.0
+    sensitivity: 0.75
     daysToAdult: 1
     lifespan: 9
   sheep:
