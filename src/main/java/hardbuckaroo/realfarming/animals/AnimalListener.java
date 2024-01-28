@@ -2,7 +2,6 @@ package hardbuckaroo.realfarming.animals;
 
 import hardbuckaroo.realfarming.RealFarming;
 import org.bukkit.entity.Animals;
-import org.bukkit.entity.Breedable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;

@@ -1,12 +1,16 @@
 # Turns on or off all features for plants.
 plantModule: true
+# Universal growth modifier for plants. Must be a positive integer with higher numbers representing easier growing conditions and a lower number representing harder growing conditions.
+plantUniversalModifier: 100
 # Turns on or off all features for animals.
 animalModule: true
+# Universal growth modifier for animals. Must be a positive integer with higher numbers representing easier breeding conditions and a lower number representing harder breeding conditions.
+animalUniversalModifier: 25
 
 # Turns on or off auto-breeding for animals.
 autoBreed: true
 # Sets frequency of auto-breeding in real life minutes (if enabled).
-autoBreedTimer: 30
+autoBreedTimer: 60
 # Determines whether player-led breeding is allowed.
 allowPlayerBreeding: false
 
@@ -333,12 +337,20 @@ animals:
     sensitivity: 1.0
     daysToAdult: 0.5
     lifespan: 20
+  polarbear:
+    idealRain: 0.5
+    idealTemp: 0.0
+    idealAltitude: 64
+    maxDensity: 10
+    sensitivity: 1.5
+    daysToAdult: 8
+    lifespan: 30
   rabbit:
     idealRain: 0.8
     idealTemp: 0.25
     idealAltitude: 64
-    maxDensity: 40
-    sensitivity: 0.75
+    maxDensity: 30
+    sensitivity: 1.0
     daysToAdult: 1
     lifespan: 9
   sheep:
