@@ -14,7 +14,7 @@ public class CheckAnimalFertility {
         double temperature = location.getBlock().getTemperature();
         double rainfall = location.getBlock().getHumidity();
         double altitude = location.getBlock().getY();
-        double density = location.getWorld().getNearbyEntities(location, 30, 30, 30).size();
+        double density = location.getWorld().getNearbyEntities(location, 30, 30, 30, (entity -> entity instanceof Animals)).size();
         double idealTemp;
         double idealRain;
         double maxDensity;
@@ -48,11 +48,12 @@ public class CheckAnimalFertility {
             densityModifier = (density-maxDensity)*0.05;
         }
 
-        growChance = (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+altitudeModifier+densityModifier)*sensitivity))*25;
+        int mod = plugin.getConfig().getInt("animalUniversalModifier");
 
-        if(growChance > 100) {
-            growChance = 100;
-        }
+        growChance = (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+altitudeModifier+densityModifier)*sensitivity))*mod;
+
+        if(growChance > mod) growChance = mod;
+        if(growChance > 100) growChance = 100;
 
         return growChance;
     }
@@ -62,7 +63,7 @@ public class CheckAnimalFertility {
         double temperature = location.getBlock().getTemperature();
         double rainfall = location.getBlock().getHumidity();
         double altitude = location.getBlock().getY();
-        double density = location.getWorld().getNearbyEntities(location, 30, 30, 30).size();
+        double density = location.getWorld().getNearbyEntities(location, 30, 30, 30, (entity -> entity instanceof Animals)).size();
         double idealTemp;
         double idealRain;
         double maxDensity;
@@ -96,11 +97,12 @@ public class CheckAnimalFertility {
             densityModifier = (density-maxDensity)*0.05;
         }
 
-        growChance = (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+altitudeModifier+densityModifier)*sensitivity))*plugin.getConfig().getInt("animalUniversalModifier");
+        int mod = plugin.getConfig().getInt("animalUniversalModifier");
 
-        if(growChance > 100) {
-            growChance = 100;
-        }
+        growChance = (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+altitudeModifier+densityModifier)*sensitivity))*mod;
+
+        if(growChance > mod) growChance = mod;
+        if(growChance > 100) growChance = 100;
 
         return new double[]{growChance,Math.abs(temperature-idealTemp),Math.abs(rainfall-idealRain),altitudeModifier,densityModifier,sensitivity};
     }

@@ -37,11 +37,14 @@ public class CheckCropFertility {
         if(Math.abs(altitude-idealAltitude) > 32)
             altitudeModifier = (Math.abs(altitude-idealAltitude) - 32)/100;
 
-        if(Arrays.asList(Material.RED_MUSHROOM, Material.BROWN_MUSHROOM, Material.NETHER_WART, Material.CAVE_VINES_PLANT, Material.SEA_PICKLE, Material.KELP_PLANT).contains(material) || block.getBiome().equals(Biome.LUSH_CAVES))
-            growChance = (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+altitudeModifier)*sensitivity))*plugin.getConfig().getInt("plantUniversalModifier");
-        else
-            growChance = (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+Math.abs(1-(block.getRelative(0,1,0).getLightFromSky()/15))+altitudeModifier)*sensitivity))*plugin.getConfig().getInt("plantUniversalModifier");
+        int mod = plugin.getConfig().getInt("plantUniversalModifier");
 
+        if(Arrays.asList(Material.RED_MUSHROOM, Material.BROWN_MUSHROOM, Material.NETHER_WART, Material.CAVE_VINES_PLANT, Material.SEA_PICKLE, Material.KELP_PLANT).contains(material) || block.getBiome().equals(Biome.LUSH_CAVES))
+            growChance = (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+altitudeModifier)*sensitivity))*mod;
+        else
+            growChance = (1-((Math.abs(temperature-idealTemp)+Math.abs(rainfall-idealRain)+Math.abs(1-(block.getRelative(0,1,0).getLightFromSky()/15))+altitudeModifier)*sensitivity))*mod;
+
+        if(growChance > mod) growChance = mod;
         if(growChance > 100) growChance = 100;
 
         return growChance;
