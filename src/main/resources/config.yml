@@ -5,7 +5,7 @@ plantUniversalModifier: 100
 # Turns on or off all features for animals.
 animalModule: true
 # Universal growth modifier for animals. Must be a positive integer with higher numbers representing easier breeding conditions and a lower number representing harder breeding conditions.
-animalUniversalModifier: 100
+animalUniversalModifier: 50
 
 # Turns on or off auto-breeding for animals.
 autoBreed: true
