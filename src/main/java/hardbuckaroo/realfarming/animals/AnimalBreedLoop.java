@@ -33,12 +33,13 @@ public class AnimalBreedLoop implements Listener {
                     if(rand.nextInt(100) <= fertility){
                         Bukkit.getScheduler().runTaskLater(Bukkit.getServer().getPluginManager().getPlugin("RealFarming"), () -> animal.setLoveModeTicks(1200), rand.nextInt(1200));
                     }
-                    if (fertility <= -100) {
+                    else if (fertility <= -100) {
                         double deathChance = (fertility + 100)*-1;
                         if(rand.nextInt(100) <= deathChance) {
                             Bukkit.getScheduler().runTaskLater(Bukkit.getServer().getPluginManager().getPlugin("RealFarming"), () -> animal.damage(animal.getHealth()), rand.nextInt(1200));
                         }
                     }
+
                     if (plugin.getConfig().contains("animals."+animalString+".lifespan")) {
                         double maxAge = plugin.getConfig().getDouble("animals."+animalString+".lifespan") * 1728000;
 

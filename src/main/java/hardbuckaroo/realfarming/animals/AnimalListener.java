@@ -5,7 +5,6 @@ import org.bukkit.entity.Animals;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.EntityBreedEvent;
 
 import java.util.Random;
 
@@ -14,13 +13,6 @@ public class AnimalListener implements Listener {
 
     public AnimalListener(RealFarming plugin){
         this.plugin = plugin;
-    }
-
-    @EventHandler
-    public void onAnimalBreedEvent(EntityBreedEvent event){
-        if(event.getMother() instanceof Animals && checkGrowth((Animals) event.getMother())){
-            event.setCancelled(true);
-        }
     }
 
     @EventHandler
