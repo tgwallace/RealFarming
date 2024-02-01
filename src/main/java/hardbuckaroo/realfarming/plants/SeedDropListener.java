@@ -31,7 +31,7 @@ public class SeedDropListener implements Listener {
             Random rand = new Random();
             event.setDropItems(false);
             if(rand.nextInt(8) == 1) {
-                Map<String, Double> map = new LinkedHashMap<String, Double>();
+                Map<String, Double> map = new LinkedHashMap<>();
                 CheckCropFertility checkCropFertility = new CheckCropFertility(plugin);
                 double completeWeight = 0;
                 for(String key : plugin.getConfig().getConfigurationSection(".plants").getKeys(false)) {
@@ -41,17 +41,24 @@ public class SeedDropListener implements Listener {
                         completeWeight += fertility;
                     }
                 }
+                double avgWeight = completeWeight/(double) map.size();
+
+                for(Map.Entry<String, Double> entry : map.entrySet()) {
+                    if(entry.getValue() <= avgWeight) map.remove(entry.getKey());
+                }
+
+                int dropAmount = 1;
                 double check = Math.random() * completeWeight;
                 double countWeight = 0;
-                for (Map.Entry<String, Double> entry : map.entrySet()) {
-                    countWeight+=entry.getValue();
-                    if(countWeight >= check) {
-                        int dropAmount = 1;
-                        int fortuneLevel = tool.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
-                        dropAmount += rand.nextInt(fortuneLevel+1)*2;
-                        Material material = Material.valueOf(entry.getKey().toUpperCase());
 
-                        if(material == Material.POTATOES) material = Material.POTATO;
+                for (Map.Entry<String, Double> entry : map.entrySet()) {
+                    double value = entry.getValue();
+                    countWeight += value;
+                    if (countWeight >= check) {
+                        int fortuneLevel = tool.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+                        dropAmount += rand.nextInt(fortuneLevel + 1) * 2;
+                        Material material = Material.valueOf(entry.getKey().toUpperCase());
+                        if (material == Material.POTATOES) material = Material.POTATO;
                         else if (material == Material.SWEET_BERRY_BUSH) material = Material.SWEET_BERRIES;
                         else if (material == Material.CAVE_VINES_PLANT) material = Material.GLOW_BERRIES;
                         else if (material == Material.BAMBOO_SAPLING) material = Material.BAMBOO;
@@ -60,10 +67,8 @@ public class SeedDropListener implements Listener {
                         else if (material == Material.CARROTS) material = Material.CARROT;
                         else if (material == Material.PUMPKIN) material = Material.PUMPKIN_SEEDS;
                         else if (material == Material.MELON) material = Material.MELON_SEEDS;
-
-                        ItemStack newDrop = new ItemStack(material,dropAmount);
-                        block.getWorld().dropItemNaturally(block.getLocation(),newDrop);
-                        return;
+                        ItemStack newDrop = new ItemStack(material, dropAmount);
+                        block.getWorld().dropItemNaturally(block.getLocation(), newDrop);
                     }
                 }
             }
