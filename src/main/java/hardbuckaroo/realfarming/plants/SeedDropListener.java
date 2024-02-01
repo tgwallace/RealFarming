@@ -43,9 +43,7 @@ public class SeedDropListener implements Listener {
                 }
                 double avgWeight = completeWeight/(double) map.size();
 
-                for(Map.Entry<String, Double> entry : map.entrySet()) {
-                    if(entry.getValue() <= avgWeight) map.remove(entry.getKey());
-                }
+                map.entrySet().removeIf(entry -> entry.getValue() < avgWeight);
 
                 int dropAmount = 1;
                 double check = Math.random() * completeWeight;
