@@ -31,7 +31,7 @@ public class SeedDropListener implements Listener {
             Random rand = new Random();
             event.setDropItems(false);
             if(rand.nextInt(8) == 1) {
-                Map<String, Double> map = new LinkedHashMap<String, Double>();
+                Map<String, Double> map = new LinkedHashMap<>();
                 CheckCropFertility checkCropFertility = new CheckCropFertility(plugin);
                 double completeWeight = 0;
                 for(String key : plugin.getConfig().getConfigurationSection(".plants").getKeys(false)) {
@@ -41,31 +41,40 @@ public class SeedDropListener implements Listener {
                         completeWeight += fertility;
                     }
                 }
-                double check = Math.random() * completeWeight;
-                double countWeight = 0;
-                for (Map.Entry<String, Double> entry : map.entrySet()) {
-                    countWeight+=entry.getValue();
-                    if(countWeight >= check) {
-                        int dropAmount = 1;
-                        int fortuneLevel = tool.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
-                        dropAmount += rand.nextInt(fortuneLevel+1)*2;
-                        Material material = Material.valueOf(entry.getKey().toUpperCase());
+                double avgWeight = completeWeight/map.size();
+                double check = 0;
+                double value = 0;
+                int dropAmount = 1;
+                int count = 0;
+                Material material = Material.AIR;
+                while (value <= avgWeight && count<=map.size()){
+                    check = Math.random() * completeWeight;
+                    double countWeight = 0;
+                    for (Map.Entry<String, Double> entry : map.entrySet()) {
+                        value = entry.getValue();
+                        countWeight += value;
+                        if (countWeight >= check) {
+                            int fortuneLevel = tool.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+                            dropAmount += rand.nextInt(fortuneLevel + 1) * 2;
+                            material = Material.valueOf(entry.getKey().toUpperCase());
 
-                        if(material == Material.POTATOES) material = Material.POTATO;
-                        else if (material == Material.SWEET_BERRY_BUSH) material = Material.SWEET_BERRIES;
-                        else if (material == Material.CAVE_VINES_PLANT) material = Material.GLOW_BERRIES;
-                        else if (material == Material.BAMBOO_SAPLING) material = Material.BAMBOO;
-                        else if (material == Material.BEETROOTS) material = Material.BEETROOT_SEEDS;
-                        else if (material == Material.WHEAT) material = Material.WHEAT_SEEDS;
-                        else if (material == Material.CARROTS) material = Material.CARROT;
-                        else if (material == Material.PUMPKIN) material = Material.PUMPKIN_SEEDS;
-                        else if (material == Material.MELON) material = Material.MELON_SEEDS;
+                            if (material == Material.POTATOES) material = Material.POTATO;
+                            else if (material == Material.SWEET_BERRY_BUSH) material = Material.SWEET_BERRIES;
+                            else if (material == Material.CAVE_VINES_PLANT) material = Material.GLOW_BERRIES;
+                            else if (material == Material.BAMBOO_SAPLING) material = Material.BAMBOO;
+                            else if (material == Material.BEETROOTS) material = Material.BEETROOT_SEEDS;
+                            else if (material == Material.WHEAT) material = Material.WHEAT_SEEDS;
+                            else if (material == Material.CARROTS) material = Material.CARROT;
+                            else if (material == Material.PUMPKIN) material = Material.PUMPKIN_SEEDS;
+                            else if (material == Material.MELON) material = Material.MELON_SEEDS;
 
-                        ItemStack newDrop = new ItemStack(material,dropAmount);
-                        block.getWorld().dropItemNaturally(block.getLocation(),newDrop);
-                        return;
+
+                        }
                     }
+                    count++;
                 }
+                ItemStack newDrop = new ItemStack(material, dropAmount);
+                block.getWorld().dropItemNaturally(block.getLocation(), newDrop);
             }
         }
     }
