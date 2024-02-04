@@ -52,4 +52,20 @@ public class GetCropFertility implements Listener {
         }
     }
 
+    @EventHandler
+    public void onPlayerInteractWithCropEvent(PlayerInteractEvent event) {
+        if (event.getClickedBlock() == null) return;
+
+        Player player = event.getPlayer();
+        Block block = event.getClickedBlock();
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK){
+            if(plugin.getConfig().get("plants."+block.toString().toLowerCase()) == null) return;
+
+            CheckCropFertility checkCropFertility = new CheckCropFertility(plugin);
+            double growChance = checkCropFertility.checkFertility(block, block.getType());
+
+            if(growChance<=0) player.sendRawMessage(block+" will not grow here.");
+            else player.sendRawMessage("Growth rate for "+block+" at this location is "+ round(growChance) +"%.");
+        }
+    }
 }

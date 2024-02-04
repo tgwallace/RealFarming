@@ -67,6 +67,7 @@ public class SeedDropListener implements Listener {
                         else if (material == Material.MELON) material = Material.MELON_SEEDS;
                         ItemStack newDrop = new ItemStack(material, dropAmount);
                         block.getWorld().dropItemNaturally(block.getLocation(), newDrop);
+                        return;
                     }
                 }
             }
