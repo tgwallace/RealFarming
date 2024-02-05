@@ -3,6 +3,7 @@ package hardbuckaroo.realfarming.plants;
 import hardbuckaroo.realfarming.RealFarming;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -80,7 +81,7 @@ public class GetCropFertility implements Listener {
                 player.sendRawMessage("Humidity Penalty: " + format.format(fertility[2]*100) + "%");
                 player.sendRawMessage("Sunlight Penalty: " + format.format(fertility[3]*100) + "%");
                 player.sendRawMessage("Altitude Penalty: "+format.format(fertility[4]*100) + "%");
-                player.sendRawMessage("Penalty Modifier: "+format.format(fertility[5]*100) + "%");
+                player.sendRawMessage("Sensitivity: "+fertility[5]);
                 player.sendRawMessage("Universal Modifier: "+plugin.getConfig().getInt("plantUniversalModifier") + "%");
             }
         }
