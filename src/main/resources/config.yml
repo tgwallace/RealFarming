@@ -108,21 +108,11 @@ plants:
     idealTemp: 0.7
     idealAltitude: 64
     sensitivity: 1.0
-  pumpkin_stem: # Stem is for the stem to advance growth stages, Pumpkin is for a fully grown stem to spawn a pumpkin. Both must have a value.
-    idealRain: 0.4
-    idealTemp: 0.8
-    idealAltitude: 64
-    sensitivity: 1.0
   pumpkin:
     idealRain: 0.4
     idealTemp: 0.8
     idealAltitude: 64
     sensitivity: 1.0
-  melon_stem: # Stem is for the stem to advance growth stages, Melon is for a fully grown stem to spawn a pumpkin. Both must have a value.
-    idealRain: 0.3
-    idealTemp: 1.0
-    idealAltitude: 64
-    sensitivity: 1.O
   melon:
     idealRain: 0.3
     idealTemp: 1.0

@@ -52,7 +52,7 @@ public class GetAnimalFertility implements Listener {
         if(player.isSneaking()) {
             double[] fertility = checkAnimalFertility.checkFertilityVerbose(animal);
             DecimalFormat format = new DecimalFormat("#0.00");
-            player.sendRawMessage("Raw breed rate: " + format.format(fertility[0]) + "%");
+            player.sendRawMessage("Breed Rate: " + format.format(fertility[0]) + "%");
             player.sendRawMessage("Temperature Penalty: " + format.format(fertility[1]*100) + "%");
             player.sendRawMessage("Humidity Penalty: " + format.format(fertility[2]*100) + "%");
             player.sendRawMessage("Altitude Penalty: " + format.format(fertility[3]*100) + "%");

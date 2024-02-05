@@ -8,6 +8,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
+
+import java.text.DecimalFormat;
 
 import static java.lang.Math.round;
 
@@ -58,14 +61,28 @@ public class GetCropFertility implements Listener {
 
         Player player = event.getPlayer();
         Block block = event.getClickedBlock();
-        if(event.getAction() == Action.RIGHT_CLICK_BLOCK){
-            if(plugin.getConfig().get("plants."+block.toString().toLowerCase()) == null) return;
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getHand() == EquipmentSlot.OFF_HAND){
+            String materialString = block.getType().toString().toLowerCase();
+            if(materialString.contains("_stem")) materialString = materialString.replace("_stem","");
+            if(materialString.contains("attached_")) materialString = materialString.replace("attached_","");
 
+            if (!plugin.getConfig().contains("plants." + materialString)) return;
             CheckCropFertility checkCropFertility = new CheckCropFertility(plugin);
-            double growChance = checkCropFertility.checkFertility(block, block.getType());
-
-            if(growChance<=0) player.sendRawMessage(block+" will not grow here.");
-            else player.sendRawMessage("Growth rate for "+block+" at this location is "+ round(growChance) +"%.");
+            if(!player.isSneaking()) {
+                double growChance = checkCropFertility.checkFertility(block, block.getType());
+                if (growChance <= 0) player.sendRawMessage(block + " will not grow here.");
+                else player.sendRawMessage("Growth rate for " + block.getType() + " at this location is " + round(growChance) + "%.");
+            } else {
+                double[] fertility = checkCropFertility.checkFertilityVerbose(block,block.getType());
+                DecimalFormat format = new DecimalFormat("#0.00");
+                player.sendRawMessage("Growth Rate: " + format.format(fertility[0]) + "%");
+                player.sendRawMessage("Temperature Penalty: " + format.format(fertility[1]*100) + "%");
+                player.sendRawMessage("Humidity Penalty: " + format.format(fertility[2]*100) + "%");
+                player.sendRawMessage("Sunlight Penalty: " + format.format(fertility[3]*100) + "%");
+                player.sendRawMessage("Altitude Penalty: "+format.format(fertility[4]*100) + "%");
+                player.sendRawMessage("Penalty Modifier: "+format.format(fertility[5]*100) + "%");
+                player.sendRawMessage("Universal Modifier: "+plugin.getConfig().getInt("plantUniversalModifier") + "%");
+            }
         }
     }
 }
