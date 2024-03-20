@@ -17,7 +17,7 @@ public class AnimalListener implements Listener {
 
     @EventHandler
     public void onSpawn(CreatureSpawnEvent event){
-        if((event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.EGG || event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.DISPENSE_EGG) && checkGrowth((Animals) event.getEntity())){
+        if((event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.EGG || event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.DISPENSE_EGG) && event.getEntity() instanceof Animals && checkGrowth((Animals) event.getEntity())){
             event.setCancelled(true);
         }
         else if(event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.BREEDING) {

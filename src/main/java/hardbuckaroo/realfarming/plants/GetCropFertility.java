@@ -71,7 +71,7 @@ public class GetCropFertility implements Listener {
             CheckCropFertility checkCropFertility = new CheckCropFertility(plugin);
             if(!player.isSneaking()) {
                 double growChance = checkCropFertility.checkFertility(block, block.getType());
-                if (growChance <= 0) player.sendRawMessage(block + " will not grow here.");
+                if (growChance <= 0) player.sendRawMessage(block.getType() + " will not grow here.");
                 else player.sendRawMessage("Growth rate for " + block.getType() + " at this location is " + round(growChance) + "%.");
             } else {
                 double[] fertility = checkCropFertility.checkFertilityVerbose(block,block.getType());
